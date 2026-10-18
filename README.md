@@ -11,17 +11,21 @@
 
 ## ⚠️ 重要说明
 
-### 本模组本身不提供中途加入功能。如需中途加入，请搭配 [LateJoinNow](https://thunderstore.io/c/repo/p/Zichen/LateJoinNow/) 使用。经测试，v1.2.2 与 LateJoinNow 兼容。
+### 本模组本身不提供中途加入功能。如需中途加入，推荐搭配 [LateJoinSimple](https://thunderstore.io/c/repo/p/cn_xc/LateJoinSimple/)（本作者维护的版本，基于 Zichen 的 LateJoinNow 修复）。
+
+> 注意：**LateJoinNow 与 LateJoinSimple 不能同时安装** —— 两者 GUID 与房间属性键都不同，同装会出现重复 RPC 与缓存清理，导致卡加载 / 地图异常。
 
 ## ⚠️ 已知冲突
 与以下模组同时使用可能导致人数上限失效，建议二选一：
 - **EmpressLateJoin** 及其它修改房间加入逻辑的模组
+- **LateJoinPlus / RepoLateJoin**：它们自带人数上限功能，会与本模组互相覆盖（双方都不一定提示），请只保留一边生效
+- 说明：本作者的 [LateJoinSimple](https://thunderstore.io/c/repo/p/cn_xc/LateJoinSimple/) 不含人数上限功能，可放心一起用
 
 
 ## ✨ 功能
 - 公开房间最大玩家数可自定义（1-20，默认 20）
 - 私人房间最大玩家数可自定义（1-6，默认 6）
-- 仅修改房间最大玩家数，不影响游戏玩法、平衡或任何其他机制制
+- 仅修改房间最大玩家数，不影响游戏玩法、平衡或任何其他机制
 
 ## 安装
 - 确保已安装 [BepInExPack](https://thunderstore.io/c/repo/p/BepInEx/BepInExPack/)
@@ -29,7 +33,7 @@
 - 启动游戏，模组会自动生成配置文件
 
 ## ⚙️ 配置
-配置文件位置：`BepInEx/config/cn-xc.MorePlayersSimple.cfg`
+配置文件位置：`BepInEx/config/dyxc666.MorePlayersSimple.cfg`
 
 | 配置项 | 默认值 | 范围 | 说明 |
 |---|---|---|---|
