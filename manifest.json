@@ -1,6 +1,6 @@
 {
     "name": "MorePlayersSimple",
-    "version_number": "1.2.2",
+    "version_number": "1.2.3",
     "website_url": "",
     "description": "已支持至 REPO v0.4.4 版本,模组问题交流QQ群573485890，精简版，将游戏公共房间最大玩家数提升至 20 人（可配置）。",
     "dependencies": [

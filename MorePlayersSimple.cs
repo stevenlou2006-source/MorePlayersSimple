@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace MorePlayersSimple
 {
-	[BepInPlugin("dyxc666.MorePlayersSimple", "More Players Simple", "1.2.0")]
+	[BepInPlugin("dyxc666.MorePlayersSimple", "More Players Simple", "1.2.3")]
 	public class MorePlayersSimplePlugin : BaseUnityPlugin
 	{
 		internal static ManualLogSource Log;
@@ -34,7 +34,7 @@ namespace MorePlayersSimple
 
 			harmony.PatchAll();
 
-			Log.LogInfo($"More Players Simple v1.2.0 loaded! Public={MaxPlayersPublic.Value}, Private={MaxPlayersPrivate.Value}");
+			Log.LogInfo($"More Players Simple v1.2.3 loaded! Public={MaxPlayersPublic.Value}, Private={MaxPlayersPrivate.Value}");
 		}
 	}
 
