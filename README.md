@@ -51,6 +51,8 @@ A：不支持。房间创建后上限无法更改，需重新开房。
 ## 问题交流
 QQ群：573485890
 
+源码与问题反馈：[GitHub](https://github.com/stevenlou2006-source/MorePlayersSimple)
+
 ## 致谢
 Zichen的LateJoinNow
 灵感来自 MorePlayersImproved 和 RoboUnion。
