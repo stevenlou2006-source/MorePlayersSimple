@@ -7,7 +7,8 @@
 * 版本号统一为 1.2.3：此前 `manifest.json` / README 写的是 1.2.2，而源码与 DLL 内嵌仍是 1.2.0
 * README：中途加入推荐改指 LateJoinSimple，并注明 LateJoinNow 与 LateJoinSimple **不可同装**
 * README：已知冲突补充 **LateJoinPlus / RepoLateJoin**（它们自带人数上限功能，会与本模组互相覆盖）
-* README：修正配置文件名（`dyxc666.MorePlayersSimple.cfg`）与一处错字`n* README / manifest：补充 **GitHub 仓库链接**（manifest 的 `website_url` 也指向仓库）
+* README：修正配置文件名（`dyxc666.MorePlayersSimple.cfg`）与一处错字
+* README / manifest：补充 **GitHub 仓库链接**（manifest 的 `website_url` 也指向仓库）
 
 ### 说明
 
