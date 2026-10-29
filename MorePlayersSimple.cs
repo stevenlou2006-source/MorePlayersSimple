@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace MorePlayersSimple
 {
-	[BepInPlugin("dyxc666.MorePlayersSimple", "More Players Simple", "1.2.3")]
+	[BepInPlugin("dyxc666.MorePlayersSimple", "More Players Simple", "1.2.4")]
 	public class MorePlayersSimplePlugin : BaseUnityPlugin
 	{
 		internal static ManualLogSource Log;
@@ -96,15 +96,15 @@ namespace MorePlayersSimple
 	}
 
 	// Steam 大厅上限
-	[HarmonyPatch(typeof(SteamManager), "HostLobby")]
+	[HarmonyPatch(typeof(SteamLobbyManager), "HostLobby")]
 	public static class HostLobbyPatch
 	{
 		[HarmonyPostfix]
-		public static void Postfix(SteamManager __instance)
+		public static void Postfix(SteamLobbyManager __instance)
 		{
 			try
 			{
-				var lobbyField = AccessTools.Field(typeof(SteamManager), "currentLobby");
+				var lobbyField = AccessTools.Field(typeof(SteamLobbyManager), "currentLobby");
 				if (lobbyField == null) return;
 
 				var lobby = lobbyField.GetValue(__instance);

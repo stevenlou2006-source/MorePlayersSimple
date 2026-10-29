@@ -1,6 +1,24 @@
 # 更新日志
 
-## \[1.2.3] - 2026-10-18
+## [1.2.4] - 2026-10-29
+
+### 修复
+- **适配游戏大更新（牛仔地图版本）**：游戏把 Steam 大厅相关成员从 `SteamManager` 迁移到了新类 `SteamLobbyManager`，
+  且 `SteamManager` 变成了静态类。原补丁 `[HarmonyPatch(typeof(SteamManager), "HostLobby")]` 因为找不到目标方法而**整段失效**
+  （日志：`AccessTools.DeclaredMethod: Could not find method for type SteamManager and name HostLobby`）。
+  现在改为补丁 `SteamLobbyManager.HostLobby`，并同样从 `SteamLobbyManager.currentLobby` 读取大厅对象。
+- 若这次修补丁仍然失败，模组其余功能（`MaxPlayers` 上限修改）不受影响。
+
+
+
+### 适配游戏引擎换代（Unity 6）
+- 这次更新把游戏从 **Unity 2022.3** 升到了 **Unity 6（6000.3.17f1）**，属于引擎大版本升级。
+  `Assembly-CSharp` / `UnityEngine.*` / Photon 等程序集全部重写，旧构建的模组会因为找不到方法而报 `MissingMethodException`。
+- 本模组已用**新版引擎程序集重新编译**，并用新版 `Assembly-CSharp` 校验补丁目标：
+  `SteamLobbyManager.HostLobby` 存在，补丁可正常挂载。
+- 说明：本模组自身只依赖 `Assembly-CSharp`（不直接用 UnityEngine），所以重编译后行为与之前一致。
+
+## [1.2.3] - 2026-10-18
 
 ### 变更
 

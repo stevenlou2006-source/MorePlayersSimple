@@ -1,3 +1,9 @@
+> **v1.2.4**：适配 2026-10-29 游戏大更新 ——
+> ① 引擎从 Unity 2022.3 升到 **Unity 6（6000.3.17f1）**，本模组已用新版程序集重新编译；
+> ② Steam 大厅逻辑从 `SteamManager` 迁移到 `SteamLobbyManager`，本模组的 `HostLobby` 补丁已跟着改。
+>
+> ⚠️ 同时期其它未适配 Unity 6 的模组（尤其 REPOLib 及依赖它的模组）会加载失败或报错，与本模组无关。
+
 # More Players Simple
 # 更多玩家精简版
 
