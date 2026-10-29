@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace MorePlayersSimple
 {
-	[BepInPlugin("dyxc666.MorePlayersSimple", "More Players Simple", "1.2.4")]
+	[BepInPlugin("dyxc666.MorePlayersSimple", "More Players Simple", "1.2.5")]
 	public class MorePlayersSimplePlugin : BaseUnityPlugin
 	{
 		internal static ManualLogSource Log;
