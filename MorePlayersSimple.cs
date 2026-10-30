@@ -28,13 +28,13 @@ namespace MorePlayersSimple
 				new ConfigDescription("公开房间最大玩家数（1-20）。修改后需重新开房生效。",
 					new AcceptableValueRange<int>(1, 20)));
 
-			MaxPlayersPrivate = Config.Bind("General", "MaxPlayersPrivate", 6,
-				new ConfigDescription("私人房间最大玩家数（1-6）。修改后需重新开房生效。",
-					new AcceptableValueRange<int>(1, 6)));
+			MaxPlayersPrivate = Config.Bind("General", "MaxPlayersPrivate", 10,
+				new ConfigDescription("私人房间最大玩家数（1-20，默认 10）。修改后需重新开房生效。注意：游戏原版私人房上限为 6，超过 6 人时部分原版流程仍按 6 人处理，不保证第 6 人之后能稳定加入。",
+					new AcceptableValueRange<int>(1, 20)));
 
 			harmony.PatchAll();
 
-			Log.LogInfo($"More Players Simple v1.2.3 loaded! Public={MaxPlayersPublic.Value}, Private={MaxPlayersPrivate.Value}");
+			Log.LogInfo($"More Players Simple v1.2.6 loaded! Public={MaxPlayersPublic.Value}, Private={MaxPlayersPrivate.Value}");
 		}
 	}
 
