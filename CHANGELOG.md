@@ -1,3 +1,23 @@
+## [1.2.6]
+
+### 修复
+- **新版游戏（Unity 6 / 2026-10-29 之后）Steam 大厅人数上限设置失效**：
+  新版 Facepunch.Steamworks 把 `Lobby.MaxMembers` 从**字段**改成了**属性**
+  （`get_MaxMembers` / `set_MaxMembers`），旧版代码用 `GetField("maxMembers")` 取不到，
+  于是这次设置被静默跳过 —— Photon 房间上限仍是 20，但 Steam 大厅上限没被改。
+- 现在改为三级回退：**属性 `MaxMembers` → 字段 `MaxMembers`/`maxMembers` → `SetLobbyMemberLimit`**，
+  并在日志里写明用了哪条路径：
+  `[MorePlayers] Steam 大厅人数上限已设为 20（属性 MaxMembers）`
+- 若三条路都不可用，会明确告警：
+  `[MorePlayers] 未能设置 Steam 大厅人数上限：当前版本的 Lobby 类型里没有 MaxMembers 属性/字段。`
+
+### 审查结论（本版已对新版程序集逐项核对）
+- `Photon.Realtime.LoadBalancingClient.OpCreateRoom` / `OpJoinOrCreateRoom`：**存在** ✓
+- `RoomOptions.MaxPlayers`（字段）：**存在** ✓
+- `SteamLobbyManager.HostLobby(Boolean)`、`currentLobby`、`privateLobby`：**存在** ✓
+- `MenuPageServerList.CreateServerElement(...)`：**存在** ✓
+- 本模组不会出现"中途加入"那种崩溃（不清缓存、不销毁对象、不跳过原方法）✓
+
 # 更新日志
 
 ## [1.2.5] - 2026-10-29

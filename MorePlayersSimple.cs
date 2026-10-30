@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace MorePlayersSimple
 {
-	[BepInPlugin("dyxc666.MorePlayersSimple", "More Players Simple", "1.2.5")]
+	[BepInPlugin("dyxc666.MorePlayersSimple", "More Players Simple", "1.2.6")]
 	public class MorePlayersSimplePlugin : BaseUnityPlugin
 	{
 		internal static ManualLogSource Log;
@@ -111,21 +111,36 @@ namespace MorePlayersSimple
 				if (lobby == null) return;
 
 				var lobbyType = lobby.GetType();
-				var setLimitMethod = lobbyType.GetMethod("SetLobbyMemberLimit");
-				if (setLimitMethod != null)
+				int limit = MorePlayersSimplePlugin.MaxPlayersPublic.Value;
+
+				// 新版 Facepunch：Lobby.MaxMembers 由「字段」改成了「属性」(get_/set_MaxMembers)
+				var maxMembersProp = lobbyType.GetProperty("MaxMembers");
+				if (maxMembersProp != null && maxMembersProp.CanWrite)
 				{
-					setLimitMethod.Invoke(lobby, new object[] { MorePlayersSimplePlugin.MaxPlayersPublic.Value });
-					MorePlayersSimplePlugin.Log.LogInfo($"Steam Lobby member limit set to {MorePlayersSimplePlugin.MaxPlayersPublic.Value}");
+					maxMembersProp.SetValue(lobby, limit);
+					MorePlayersSimplePlugin.Log.LogInfo($"[MorePlayers] Steam 大厅人数上限已设为 {limit}（属性 MaxMembers）");
+					return;
 				}
-				else
+
+				// 旧版回退：字段 maxMembers / MaxMembers
+				var maxMembersField = lobbyType.GetField("MaxMembers") ?? lobbyType.GetField("maxMembers");
+				if (maxMembersField != null)
 				{
-					var maxMembersField = lobbyType.GetField("MaxMembers") ?? lobbyType.GetField("maxMembers");
-					if (maxMembersField != null)
-					{
-						maxMembersField.SetValue(lobby, MorePlayersSimplePlugin.MaxPlayersPublic.Value);
-						MorePlayersSimplePlugin.Log.LogInfo($"Steam Lobby MaxMembers set to {MorePlayersSimplePlugin.MaxPlayersPublic.Value}");
-					}
+					maxMembersField.SetValue(lobby, limit);
+					MorePlayersSimplePlugin.Log.LogInfo($"[MorePlayers] Steam 大厅人数上限已设为 {limit}（字段 maxMembers）");
+					return;
 				}
+
+				// 最后回退：Steam 原生接口
+				var setLimit = lobbyType.GetMethod("SetLobbyMemberLimit");
+				if (setLimit != null)
+				{
+					setLimit.Invoke(lobby, new object[] { limit });
+					MorePlayersSimplePlugin.Log.LogInfo($"[MorePlayers] Steam 大厅人数上限已设为 {limit}（SetLobbyMemberLimit）");
+					return;
+				}
+
+				MorePlayersSimplePlugin.Log.LogWarning("[MorePlayers] 未能设置 Steam 大厅人数上限：当前版本的 Lobby 类型里没有 MaxMembers 属性/字段。");
 			}
 			catch
 			{
