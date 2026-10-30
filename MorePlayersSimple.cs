@@ -28,8 +28,8 @@ namespace MorePlayersSimple
 				new ConfigDescription("公开房间最大玩家数（1-20）。修改后需重新开房生效。",
 					new AcceptableValueRange<int>(1, 20)));
 
-			MaxPlayersPrivate = Config.Bind("General", "MaxPlayersPrivate", 10,
-				new ConfigDescription("私人房间最大玩家数（1-20，默认 10）。修改后需重新开房生效。注意：游戏原版私人房上限为 6，超过 6 人时部分原版流程仍按 6 人处理，不保证第 6 人之后能稳定加入。",
+			MaxPlayersPrivate = Config.Bind("General", "MaxPlayersPrivate", 6,
+				new ConfigDescription("私人房间最大玩家数（1-20，默认 6 = 游戏原版）。想更多人可自行调高；注意原版流程按 6 人设计，超过 6 人不保证能稳定加入。修改后需重新开房生效。",
 					new AcceptableValueRange<int>(1, 20)));
 
 			harmony.PatchAll();
